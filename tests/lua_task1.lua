@@ -1,5 +1,5 @@
-practiceLoops = {
-function(N) 
+PracticeLoops = {
+function(N)
     for t = 0, N do
         print(t)
     end
@@ -16,7 +16,7 @@ function(N)
 end
 }
 
-practiceArrays = {
+PracticeArrays = {
     function(arr)
         local sum = 0
         for _ , num in ipairs(arr) do
@@ -25,10 +25,10 @@ practiceArrays = {
         return sum
     end,
     function(arr)
-        local max = null
+        local max = nil
         local maxIndex = -1
         for i, num in ipairs(arr) do
-            if max == null or num > max then
+            if max == nil or num > max then
                 max = num
                 maxIndex = i
             end
@@ -50,11 +50,11 @@ practiceArrays = {
                 if i == N then return num end
             end
         end
-        return null
+        return nil
     end
 }
 
-practiceArraysVsTables = {
+PracticeArraysVsTables = {
     function(arr)
         for i,e in ipairs(arr) do
             print(string.format("%s: %s", i, e))
@@ -69,7 +69,7 @@ practiceArraysVsTables = {
         return #arr
     end,
     function(tbl)
-        ret = 0
+        local ret = 0
         for _,_ in pairs(tbl) do
             ret = ret + 1
         end
@@ -86,22 +86,22 @@ practiceArraysVsTables = {
     end
 }
 
-practiceTablesInBasicApplications = {
+PracticeTablesInBasicApplications = {
     debugDump = function(o)
         if type(o) == "table" then
             local array_keys = {}
-            local ret = null
+            local ret = nil
             --first dump all the array elements
             for i, item in ipairs(o) do
                 array_keys[i] = true
-                item_repr = practiceTablesInBasicApplications.debugDump(item)
-                if ret == null then ret = item_repr else ret = string.format("%s, %s", ret, item_repr) end
+                local item_repr = PracticeTablesInBasicApplications.debugDump(item)
+                if ret == nil then ret = item_repr else ret = string.format("%s, %s", ret, item_repr) end
             end
             -- now dump all the elements that we didn't go through when iterating the object as an array
             for key, val in pairs(o) do
                 if array_keys[key] ~= true then
-                    entry_repr = string.format("[%s] = %s", practiceTablesInBasicApplications.debugDump(key), practiceTablesInBasicApplications.debugDump(val))
-                    if ret == null then ret = entry_repr else ret = string.format("%s, %s", ret, entry_repr) end 
+                    local entry_repr = string.format("[%s] = %s", PracticeTablesInBasicApplications.debugDump(key), PracticeTablesInBasicApplications.debugDump(val))
+                    if ret == nil then ret = entry_repr else ret = string.format("%s, %s", ret, entry_repr) end 
                 end
             end
             return string.format("{ %s }", ret)
@@ -111,8 +111,9 @@ practiceTablesInBasicApplications = {
         end
         return string.format("%s", o)
     end,
+
     filter = function(arr, predicate)
-        ret = {}
+        local ret = {}
         for _,e in ipairs(arr) do
             if predicate(e) then 
                 ret[#ret + 1] = e
@@ -123,9 +124,9 @@ practiceTablesInBasicApplications = {
 }
 
 
-o = { true, "Dsadsa", {1, 2, false}}
+local o = { true, "Dsadsa", {1, 2, false}}
 o.fdsfds = "dsadsa"
 o[55] = 11111
 o[{123, 4}] = "fdsfddf"
 
-print(practiceTablesInBasicApplications.debugDump(o))
+print(PracticeTablesInBasicApplications.debugDump(o))
